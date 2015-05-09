@@ -22,6 +22,8 @@ class EchoNest:
         if search_result.json() != []:
             similar_artists_dict =search_result.json()
             print(similar_artists_dict['response']['artists'][0]['name'])
+            for artist in range(0, len(similar_artists_dict['response']['artists'])-1):
+                print(similar_artists_dict['response']['artists'][artist]['name'])
 
         else:
             print("No artists found.")
