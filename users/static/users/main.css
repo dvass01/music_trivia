@@ -1,0 +1,126 @@
+header #header{
+    font-size:.5em;
+    color:black;
+    background-color:#ff6600;
+    margin:auto;
+    height:3.5em;
+    width:80%;
+    font-family: Verdana, Geneva, sans-serif;
+}
+
+header #header #y-pic {
+    float:left;
+    clear:both;
+    border: .1em solid white;
+    margin:.1em;
+}
+
+header h1{
+    color:black;
+    margin-top:2em;
+    font-size:2em;
+    display: table-cell;
+    vertical-align:middle;
+}
+#header h1 a{
+    margin:auto;
+    vertical-align:middle;
+}
+
+#header ul li a{
+    font-family: Verdana, Geneva, sans-serif;
+}
+#header ul{
+    padding: 0;
+}
+
+/*#header div {
+    margin:.5em auto;
+}*/
+
+#header a {
+    font-size: 2em;
+}
+
+#header #hn-link{
+    font-weight:bold;
+}
+
+#header #submit-link {
+    /*float:left;*/
+    clear:right;
+    font-weight:normal;
+}
+
+#header #menu {
+    margin-left:.2em;
+    margin-top:.5em;
+    float:left;
+    clear:right;
+}
+
+#header #menu div {
+    display:inline;
+    margin:.1em;
+}
+#header #user-link{
+    float:right;
+    font-size:.50em;
+}
+
+#header #login-link{
+    float:right;
+    margin: .5em .5em;
+}
+
+header ul li {
+    /*margin-left: 2.5em;*/
+    margin-right:1em;
+    display: inline-block;
+    float:right;
+    list-style-type: none;
+    font-size: 2em;
+}
+header p {
+    float:right;
+    font-size:2em;
+    clear: left;
+}
+
+h2 {
+    font-size: 1em;
+}
+form {
+    margin-top: 2em;
+}
+#header a {
+    color:black;
+}
+
+.post-title a{
+    color:black;
+}
+.post-metadata a{
+    color:#828282;
+}
+.domain a{
+    color:#828282;
+}
+a {
+    text-decoration: none;
+}
+
+ol {
+    background-color:#f6f6ef;
+    margin:0;
+}
+.menu p{
+    margin-right: 3em;
+    display:inline-block;
+}
+
+#hn-posts {
+    color:#828282;
+    width: 80%;
+    margin: 0 auto 0 auto;
+}
