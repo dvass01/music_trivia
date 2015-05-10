@@ -1,0 +1,9 @@
+jazz
+pop
+rock
+metal
+hip-hop
+folk
+punk
+country
+blues
