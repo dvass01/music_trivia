@@ -36,6 +36,13 @@ class QuestionView(View):
     def post(self, request):
         pass
 
+class ChoicesView(View):
+    def get(self, request):
+        pass
+
+    def post(self, request):
+        pass
+
 
 class ResultsView(View):
     template_name = 'trivia/results.html'
