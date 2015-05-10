@@ -5,9 +5,9 @@ class EchoNest:
     def __init__(self):
         self.similar_artists_url = 'http://developer.echonest.com/api/v4/artist/similar?api_key=L04DEV3NFMZOKDFKY&format=json&bucket=id:CAABOUD13216257FC7&limit=true&name='
 
-        self.genre_artists_url = 'http://developer.echonest.com/api/v4/genre/artists?api_key=L04DEV3NFMZOKDFKY&format=json&results=5&bucket=hotttnesss&name='
+        self.genre_artists_url = 'http://developer.echonest.com/api/v4/genre/artists?api_key=L04DEV3NFMZOKDFKY&format=json&results=15&bucket=hotttnesss&name='
 
-        self.artist_songs_url = 'http://developer.echonest.com/api/v4/artist/songs?api_key=L04DEV3NFMZOKDFKY&format=json&results=15&name='
+        self.artist_songs_url = 'http://developer.echonest.com/api/v4/artist/songs?api_key=L04DEV3NFMZOKDFKY&format=json&results=100&name='
 
         self.biographies_url = 'http://developer.echonest.com/api/v4/artist/biographies?api_key=L04DEV3NFMZOKDFKY&format=json&results=1&start=0&license=cc-by-sa&name='
 

@@ -1,9 +1,8 @@
-
-from django.conf.urls import include, url,patterns
+from django.conf.urls import include, url, patterns
 from django.contrib import admin
 
-urlpatterns = patterns('',
-    url(r'^', include('users.urls'),
-    # url(r'^trivia/', include(admin.site.urls)),
+urlpatterns = patterns ('',
+    url(r'^trivia/', include('trivia.urls')),
+    url(r'^users/', include('users.urls')),
     url(r'^admin/', include(admin.site.urls)),
 )
