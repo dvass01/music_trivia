@@ -5,6 +5,7 @@ from django.db import models
 from users.models import User
 from users.forms import UserForm
 from trivia.models import Genre
+from trivia.wrapper import EchoNest
 
 # Create your models here.
 
@@ -19,11 +20,18 @@ class GenreView(View):
 
 
 class QuestionView(View):
+    info_search = EchoNest()
     template_name = 'trivia/questions.html'
     context_dict = {}
 
     def get(self, request):
-        pass
+        artist_list = self.info_search.get_genre_artists(genre_choice)
+        for artist in artist_list:
+            artist_songs = self.info_search.get_artist_songs(artist)
+
+
+
+
 
     def post(self, request):
         pass
