@@ -1,5 +1,7 @@
 import requests
 import json
+import collections
+from collections import defaultdict
 
 class EchoNest:
     def __init__(self):
@@ -7,7 +9,7 @@ class EchoNest:
 
         self.genre_artists_url = 'http://developer.echonest.com/api/v4/genre/artists?api_key=L04DEV3NFMZOKDFKY&format=json&results=15&bucket=hotttnesss&name='
 
-        self.artist_songs_url = 'http://developer.echonest.com/api/v4/artist/songs?api_key=L04DEV3NFMZOKDFKY&format=json&results=100&name='
+        self.artist_songs_url = 'http://developer.echonest.com/api/v4/artist/songs?api_key=L04DEV3NFMZOKDFKY&format=json&results=25&name='
 
         self.biographies_url = 'http://developer.echonest.com/api/v4/artist/biographies?api_key=L04DEV3NFMZOKDFKY&format=json&results=1&start=0&license=cc-by-sa&name='
 
@@ -24,7 +26,7 @@ class EchoNest:
             # print(similar_artists_dict['response']['artists'][0]['name'])
             for artist in range(0, len(similar_artists_dict['response']['artists'])-1):
                 # print(similar_artists_dict['response']['artists'][artist]['name'])
-                results_array.append(artist)
+                results_array.append(similar_artists_dict['response']['artists'][artist]['name'])
             return results_array
 
         else:
@@ -38,7 +40,7 @@ class EchoNest:
             genre_artists_dict = search_result.json()
             for artist in range(0, len(genre_artists_dict['response']['artists'])-1):
                 # print(genre_artists_dict['response']['artists'][artist]['name'])
-                results_array.append(artist)
+                results_array.append(genre_artists_dict['response']['artists'][artist]['name'])
             return results_array
         else:
             # print("No artists found.")
@@ -52,7 +54,7 @@ class EchoNest:
             artist_songs_dict = search_result.json()
             for song in range(0, len(artist_songs_dict['response']['songs'])-1):
                 # print(artist_songs_dict['response']['songs'][song]['title'])
-                results_array.append(song)
+                results_array.append(artist_songs_dict['response']['songs'][song]['title'])
             return results_array
         else:
             # print("No songs found.")
@@ -72,6 +74,28 @@ class EchoNest:
             return None
 
 
+    def get_dict(self, genre):
+        # print(e.get_genre_artists('rock'))
+        artist_list = e.get_genre_artists(genre)
+        artists_songs = []
+        for artist in artist_list:
+            # print(e.get_artist_songs(artist))
+            song_list = e.get_artist_songs(artist)
+            for song in song_list:
+                artists_songs.append([artist, song])
+        # print()
+        # for row in artists_songs:
+        #     print(row)
+        # print()
+        d = defaultdict(list)
+        for k, v in artists_songs:
+            d[k].append(v)
+        # for k, v in d.items():
+        #     print(k, v)
+        #     print()
+        return d.items()
+
+
 # e = EchoNest()
 # e.similar_artist_search('rainbow')
 # print()
@@ -81,3 +105,4 @@ class EchoNest:
 # print()
 # e.get_artist_biographies('blindfaith')
 # print()
+# print(e.get_dict('rock'))
