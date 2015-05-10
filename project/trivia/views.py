@@ -30,9 +30,6 @@ class QuestionView(View):
             artist_songs = self.info_search.get_artist_songs(artist)
 
 
-
-
-
     def post(self, request):
         pass
 

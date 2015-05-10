@@ -3,8 +3,6 @@ from django.contrib import admin
 
 urlpatterns = patterns ('',
 
-    url(r'^trivia/questions/(?P<genre>\d+)/$', QuestionView.as_view()),
-    url(r'^trivia/questions/(?P<artists>\d+)/$', QuestionView.as_view()),
-    url(r'^trivia/questions/(?P<songs>\d+)/$', QuestionView.as_view()),
-
+    url(r'^questions/(?P<genre>\w+)/$', QuestionView.as_view()),
+    url(r'^choices/(P<user_choice>\d+)/$', ChoicesView.as_view()),
 )
