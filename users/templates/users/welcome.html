@@ -1,0 +1,10 @@
+{% extends 'users/base.html' %}
+{% load staticfiles %}
+
+    {% block content %}
+        <div class = "container">
+            <h2>Hi {{ active_user.username }}!<h2>
+                <br></br>
+            <p><a href="/users/{{active_user.username}}">{{active_user.username}}'s Account</a></p>
+        </div>
+    {% endblock %}

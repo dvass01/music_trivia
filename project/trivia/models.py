@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.db import models
 
 # Create your models here.
 
@@ -14,5 +15,3 @@ class Question(models.Model):
     choice_4 = models.CharField(max_length=100)
     answer = models.CharField(max_length=100)
     user_answer = models.IntegerField(null=True)
-
-

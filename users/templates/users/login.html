@@ -1,0 +1,29 @@
+{% load staticfiles %}
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href= "{% static 'users/main.css' %}">
+    </head>
+
+        <div class = "container">
+
+                <div class = "login_form">
+                    <h2>Login</h2>
+                    <form name="login" action="/users/login" method="POST">
+                        {% csrf_token %}
+                        {{ user_form.as_ul }}
+                        <input type="submit" value="Log-in">
+                    </form>
+
+                </div>
+
+                <div class = "registration_form">
+                    <h2>Create Account</h2>
+                    <form name="form" action="/users/register" method="POST">
+                        {% csrf_token %}
+                        {{ user_form.as_ul }} <!-- can also be form.as_p, form.as_ul -->
+                        <input type="submit" value="Register">
+                    </form>
+                </div>
+        </div>
+    </body>
+</html>
