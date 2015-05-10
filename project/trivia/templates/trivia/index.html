@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+{% extends 'users/base.html' %}
+
+	{% block content %}
+
+		{% if all_genres %}
+
+			<ul><p>Pick a genre to begin!</p>
+
+				{% for genre in all_genres %}
+
+					<li><a href = "/trivia/questions/{{ genre.genre_name }}">{{ genre.genre_name }}</li>
+
+				{% endfor %}
+
+			</ul>
+
+		{% endif %}
+
+	{% endblock %}
