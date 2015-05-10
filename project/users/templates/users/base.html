@@ -1,0 +1,47 @@
+{% load staticfiles %}
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href= "{% static 'users/main.css' %}">
+    </head>
+    <body>
+        <header>
+            <div id='header'>
+                <div id="menu">
+                    <div id='hn-link'>
+                        <a href="/news">
+                            <div id='y-pic'><img src = "{% static 'users/ycombinator_logo.gif' %}"></div>
+                            Hacker News
+                            <div id="submit-link"><a href="/news/submit">submit</a></div>
+                        </a>
+                    </div>
+                </div>
+                {% if active_user %}
+                    <div id='user-link'>
+                        <ul>
+                            <li><a href="/users/logout">logout</a></li>
+
+                            <li style = "font-size:4em">|</li>
+
+                            <li><a href ="/users/{{active_user.username}}">{{active_user.username}}</a></li>
+                        </ul>
+                    </div>
+                {% else %}
+                <div id='login-link'><a href="/users/login">login</a></div>
+                {% endif %}
+
+            </div>
+            {% block header %}
+            {% endblock %}
+        </header>
+
+        <div class = "container">
+            {% block content %}
+            {% endblock %}
+        </div>
+
+        <div>
+        {% block footer %}
+        {% endblock %}
+        </div>
+    </body>
+</html>
