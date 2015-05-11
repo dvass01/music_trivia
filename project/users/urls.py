@@ -14,8 +14,6 @@ urlpatterns = patterns('',
 
     url(r'^login$', LoginView.as_view()),
 
-    # url(r'^welcome$', WelcomeView.as_view()),
-
     url(r'^logout$',LogoutView.as_view()),
 
     url(r'^(?P<username>[\w\-]+)$', UserView.as_view()),
