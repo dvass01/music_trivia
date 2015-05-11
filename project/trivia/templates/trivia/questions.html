@@ -1,9 +1,9 @@
 {% extends 'users/base.html' %}
 
 	{% block content %}
-
+	{% if not result %}
 		<h1>{{active_user.username}}'s Game</h1>
-		<h2>Which artist performed "{{correct_song}}?"</h2>
+		<h2>{{ question_text }}</h2>
 
 
 			<div id="choice_list">
@@ -11,13 +11,18 @@
 				<ul>
 					{% for artist in all_artists %}
 
-						<li><form name="choice_form" action="/trivia/choices/{{artist}}" method="POST">
+						<li style="list-style-type:none"><form name="choice_form" action="/trivia/choices/{{artist}}" method="POST">
 						{% csrf_token %}
-						<input type="submit" value="{{artist}}"></li>
+						<input type="submit" value="{{artist}}"></form></li>
 
 					{% endfor %}
 
 				</ul>
+
+	{% else %}
+		<p>{{result}}</p>
+		<p><a href = "/trivia">Keep playing?</a></p>
+	{% endif %}
 
 			</div>
 

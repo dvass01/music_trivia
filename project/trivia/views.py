@@ -4,10 +4,11 @@ from django.http import HttpResponse
 from django.db import models
 from users.models import User
 from users.forms import UserForm
-from trivia.models import Genre
+from trivia.models import Genre,Question
 from trivia.wrapper import EchoNest
 import random
 from random import sample,choice
+
 # Create your models here.
 
 class GenreView(View):
@@ -32,22 +33,39 @@ class QuestionView(View):
 
         if active_user:
             question_dict = self.info_search.get_random_artist_songs(self.info_search.get_dict(genre))
+            if question_dict:
+                all_artists = []
+                for row in question_dict:
+                    slugged_artist = row[0].replace(" ","_")
+                    all_artists.append(slugged_artist)
 
-            all_artists = []
-            for row in question_dict:
-                all_artists.append(row[0])
+                answer_pair = random.choice(question_dict)
+                correct_artist = answer_pair[0].replace(" ","_")
+                correct_song = answer_pair[1].replace(" ","_")
 
-            answer_pair = random.choice(question_dict)
-            correct_artist = answer_pair[0]
-            correct_song = answer_pair[1]
+                print(correct_song)
+                print(correct_artist)
+                question_text = "Which artist performed {}?".format(correct_song)
 
-            return render(request,self.template_name, {'active_user':active_user[0],'all_artists':all_artists, 'correct_artist':correct_artist, 'correct_song':correct_song})
+                question = Question.objects.create(user_id=active_user[0],answer=correct_artist,question_text=question_text,choice_1=all_artists[0],choice_2=all_artists[1],choice_3=all_artists[2],choice_4=all_artists[3])
 
+                request.session['question_text'] = question_text
+
+                return render(request,self.template_name, {'active_user':active_user[0],'all_artists':all_artists, 'correct_artist':correct_artist, 'correct_song':correct_song,'question_text':question_text})
+            return redirect('/trivia')
         return redirect('/users/login')
 
 
-    def post(self, request):
-        pass
+    def post(self, request, artist):
+        question_text = request.session.get('question_text')
+        question = Question.objects.filter(question_text=question_text)[0]
+        artist.replace('%20',' ')
+        print(question.answer)
+        print(artist)
+        if question.answer == artist:
+            return HttpResponse("Correct!")
+        return HttpResponse("Nope.")
+
 
 class ChoicesView(View):
     def get(self, request):

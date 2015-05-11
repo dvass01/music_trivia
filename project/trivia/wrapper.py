@@ -39,9 +39,12 @@ class EchoNest:
         search_result = requests.get(self.genre_artists_url + genre)
         if search_result.json() != []:
             genre_artists_dict = search_result.json()
-            for artist in range(0, len(genre_artists_dict['response']['artists'])-1):
+            try:
+                for artist in range(0, len(genre_artists_dict['response']['artists'])-1):
                 # print(genre_artists_dict['response']['artists'][artist]['name'])
-                results_array.append(genre_artists_dict['response']['artists'][artist]['name'])
+                    results_array.append(genre_artists_dict['response']['artists'][artist]['name'])
+            except KeyError:
+                print('wait to execute again')
             return results_array
         else:
             # print("No artists found.")
@@ -108,8 +111,10 @@ class EchoNest:
     def get_random_artist_songs(self, artists_songs_list):
         random_artist_songs = []
         # grabbing 4 artist songs tuples at random
+        if artists_songs_list == []:
+            return False
         random_artists = random.sample(artists_songs_list, 4)
-
+        print(random_artists)
         for artist_song in random_artists:
             # grabbing 1 song from list in 2nd index of artist_song tuple
             random_song = random.sample(artist_song[1], 1)

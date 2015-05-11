@@ -95,7 +95,7 @@ form {
 #header a {
     color:white;
 }
-#choice-list ul li{
+#choice-list ul {
     list-style-type:none;
 }
 .post-metadata a{
