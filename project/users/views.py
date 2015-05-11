@@ -10,9 +10,9 @@ class IndexView(View):
 
     def get(self,request):
         active_user_id = request.session.get('user_id')
-        active_user = User.objects.filter(id=active_user_id)
-        if active_user_id:
-            return render(request,self.template,{'active_user':active_user[0],'all_users':self.all_users})
+        active_user = User.objects.filter(id=active_user_id)[0]
+        if active_user:
+            return render(request,self.template,{'active_user':active_user,'all_users':self.all_users})
         return render(request,self.template,{'all_users':self.all_users})
 
 class LoginView(View):
@@ -20,11 +20,14 @@ class LoginView(View):
     template = 'users/login.html'
 
     def get(self,request):
-        active_user_id = request.session.get('user_id')
-        active_user = User.objects.filter(id=active_user_id)
-        if active_user_id:
-            return render(request,self.template,{'user_form':self.empty_form, 'active_user':active_user[0]})
-        return render(request,self.template,{'user_form':self.empty_form})
+        print(request.session.get('user_id'))
+        if request.session.get('user_id'):
+            active_user_id = request.session.get('user_id')
+            active_user = User.objects.filter(id=active_user_id)
+        if active_user:
+            return render(request,self.template,{'user_form':self.empty_form, 'active_user':active_user})
+        else:
+            return render(request,self.template,{'user_form':self.empty_form})
 
     def post(self,request):
         username = request.POST['username']
@@ -43,9 +46,9 @@ class RegisterView(View):
 
     def get(self,request):
         active_user_id = request.session.get('user_id')
-        active_user = User.objects.filter(id=active_user_id)
+        active_user = User.objects.filter(id=active_user_id)[0]
         if active_user:
-            return render(request,self.template,{'user_form':self.empty_form,'active_user':active_user[0]})
+            return render(request,self.template,{'user_form':self.empty_form,'active_user':active_user})
         return render(request,self.template,{'user_form':self.empty_form})
 
     def post(self,request):
@@ -67,9 +70,10 @@ class LogoutView(View):
 
     def get(self,request):
         active_user_id = request.session.get('user_id')
-        active_user = User.objects.filter(id=active_user_id)
-        if active_user:
-            return render(request,self.template,{'active_user':active_user[0]})
+        if len(User.objects.filter(id=active_user_id)[0])>0:
+            active_user = User.objects.filter(id=active_user_id)[0]
+            if active_user:
+                return render(request,self.template,{'active_user':active_user})
         return redirect('/users/login')
 
     def post(self,request):
@@ -83,9 +87,9 @@ class UserView(View):
         user = User.objects.get(username=username)
         profile_form = UserProfileForm(initial={'about':user.about})
         active_user_id = request.session.get('user_id')
-        active_user = User.objects.filter(id=active_user_id)
+        active_user = User.objects.filter(id=active_user_id)[0]
         if active_user_id == user.id:
-            return render(request,self.template,{'user':user, 'active_user':active_user[0],'profile_form':profile_form,'user':user})
+            return render(request,self.template,{'user':user, 'active_user':active_user,'profile_form':profile_form,'user':user})
         return redirect('/users/login')
 
     def post(self,request,username):

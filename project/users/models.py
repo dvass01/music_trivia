@@ -18,3 +18,9 @@ class User(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     about = models.TextField(default='[user description]')
     points = models.IntegerField(default=0)
+    games_played = models.IntegerField(default=0)
+    win_percentage = models.CharField(max_length=254, default=0)
+
+    def calculate_win_percentage(self):
+        new_win_percentage = float((self.points/self.games_played)*100)
+        return new_win_percentage

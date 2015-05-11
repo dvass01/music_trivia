@@ -88,15 +88,15 @@ header p {
 h2 {
     font-size: 1em;
 }
+
 form {
     margin-top: 2em;
 }
 #header a {
     color:white;
 }
-
-.post-title a{
-    color:black;
+#choice-list ul {
+    list-style-type:none;
 }
 .post-metadata a{
     color:#828282;
@@ -129,4 +129,12 @@ ol {
 }
 #genre-list ul li {
     list-style-type: none;
+}
+#user_profile {
+    margin: 0 auto 0 auto;
+    width: 80%;
+}
+#choice_list {
+    margin: 0 auto 0 auto;
+    width: 80%;
 }
