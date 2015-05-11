@@ -25,12 +25,12 @@ class QuestionView(View):
     template_name = 'trivia/questions.html'
     context_dict = {}
 
-    def get(self, request):
+    def get(self, request,genre):
         active_user_id = request.session.get('user_id')
         active_user = User.objects.filter(id=active_user_id)
-        artists_songs_dict = self.info_search.get_dict(genre_choice)
+        artists_songs_dict = self.info_search.get_dict(genre)
         if active_user:
-            return render(request,self.template_name, {'active_user':active_user,'artist_list':artist_list})
+            return render(request,self.template_name, {'active_user':active_user[0],'artist_list':artists_songs_dict})
         return redirect('/users/login')
 
     def post(self, request):

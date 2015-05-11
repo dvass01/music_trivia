@@ -77,6 +77,7 @@ class EchoNest:
 
     def get_dict(self, genre):
         # print(e.get_genre_artists('rock'))
+        e = EchoNest()
         artist_list = e.get_genre_artists(genre)
         artists_songs = []
         for artist in artist_list:
@@ -116,7 +117,7 @@ class EchoNest:
 
 if __name__ == '__main__':
 
-    e = EchoNest()
+    # e = EchoNest()
 # e.similar_artist_search('rainbow')
 # print()
 # e.get_genre_artists('rock')
