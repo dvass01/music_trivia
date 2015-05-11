@@ -14,13 +14,12 @@ cur =  conn.cursor()
 
 cursor.execute("CREATE TABLE genres (id serial PRIMARY KEY, name varchar);")
 db.commit()
-    
+
 genres = []
 
 with open('genres.txt','r') as f:
     for line in f:
         genres.append(strip(line))
-        
+
 
 cursor.execute
-

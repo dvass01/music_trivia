@@ -1,22 +1,15 @@
 header #header{
     font-size:.5em;
     color:black;
-    background-color:#ff6600;
+    background-color:blue;
     margin:auto;
-    height:3.5em;
+    height:7em;
     width:80%;
     font-family: Verdana, Geneva, sans-serif;
 }
 
-header #header #y-pic {
-    float:left;
-    clear:both;
-    border: .1em solid white;
-    margin:.1em;
-}
-
 header h1{
-    color:black;
+    color:white;
     margin-top:2em;
     font-size:2em;
     display: table-cell;
@@ -25,6 +18,7 @@ header h1{
 #header h1 a{
     margin:auto;
     vertical-align:middle;
+    color:white;
 }
 
 #header ul li a{
@@ -42,8 +36,9 @@ header h1{
     font-size: 2em;
 }
 
-#header #hn-link{
+#header #trivia-link a{
     font-weight:bold;
+    color:white;
 }
 
 #header #submit-link {
@@ -66,11 +61,13 @@ header h1{
 #header #user-link{
     float:right;
     font-size:.50em;
+    color:white;
 }
 
-#header #login-link{
+#header #login-link a{
     float:right;
     margin: .5em .5em;
+    color:white;
 }
 
 header ul li {
@@ -80,6 +77,7 @@ header ul li {
     float:right;
     list-style-type: none;
     font-size: 2em;
+    color:white;
 }
 header p {
     float:right;
@@ -94,7 +92,7 @@ form {
     margin-top: 2em;
 }
 #header a {
-    color:black;
+    color:white;
 }
 
 .post-title a{
@@ -122,5 +120,13 @@ ol {
 #hn-posts {
     color:#828282;
     width: 80%;
+}
+
+#genre-list {
     margin: 0 auto 0 auto;
+    width: 85%;
+    font-size:2.5em;
+}
+#genre-list ul li {
+    list-style-type: none;
 }

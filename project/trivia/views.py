@@ -16,8 +16,9 @@ class GenreView(View):
     def get(self, request):
         active_user_id = request.session.get('user_id')
         active_user = User.objects.filter(id=active_user_id)
-        return render(request, self.template_name, {'all_genres': self.all_genres, 'active_user': active_user})
-
+        if active_user:
+            return render(request, self.template_name, {'all_genres': self.all_genres, 'active_user': active_user[0]})
+        return redirect('/users/login')
 
 class QuestionView(View):
     info_search = EchoNest()
@@ -25,12 +26,12 @@ class QuestionView(View):
     context_dict = {}
 
     def get(self, request):
+        active_user_id = request.session.get('user_id')
+        active_user = User.objects.filter(id=active_user_id)
         artists_songs_dict = self.info_search.get_dict(genre_choice)
-        
-
-
-
-
+        if active_user:
+            return render(request,self.template_name, {'active_user':active_user,'artist_list':artist_list})
+        return redirect('/users/login')
 
     def post(self, request):
         pass
