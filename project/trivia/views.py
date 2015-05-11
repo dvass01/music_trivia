@@ -25,9 +25,11 @@ class QuestionView(View):
     context_dict = {}
 
     def get(self, request):
-        artist_list = self.info_search.get_genre_artists(genre_choice)
-        for artist in artist_list:
-            artist_songs = self.info_search.get_artist_songs(artist)
+        artists_songs_dict = self.info_search.get_dict(genre_choice)
+        
+
+
+
 
 
     def post(self, request):
