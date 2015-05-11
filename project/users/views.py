@@ -3,7 +3,6 @@ from users.forms import UserForm,UserProfileForm
 from users.models import User
 from django.contrib.auth.hashers import make_password,check_password
 from django.views.generic import View
-from django.core.exceptions import ObjectDoesNotExist
 
 class IndexView(View):
     template = 'users/index.html'
@@ -35,7 +34,7 @@ class LoginView(View):
             if check_password(password, login_user[0].password):
                 request.session.flush()
                 request.session['user_id'] = login_user[0].id
-                return redirect('/users/welcome')
+                return redirect('/trivia')
         return render(request, self.template, {'error':'Username and/or password incorrect.  Please try again.', 'user_form':self.empty_form})
 
 class RegisterView(View):
@@ -60,19 +59,8 @@ class RegisterView(View):
             new_user.save()
             request.session.flush()
             request.session['user_id'] = new_user.id
-            return redirect('/users/welcome')
+            return redirect('/trivia')
         return render(request,self.template,{'error':'Invalid input, please try again (password must be at least 7 characters long).', 'user_form':self.empty_form})
-
-class WelcomeView(View):
-    template = 'users/welcome.html'
-
-    def get(self,request):
-        active_user_id = request.session.get('user_id')
-        active_user = User.objects.filter(id=active_user_id)
-        if active_user_id:
-            request.session.set_expiry(500)
-            return render(request, self.template,{'active_user':active_user[0]})
-        return redirect('/users')
 
 class LogoutView(View):
     template = 'users/logout.html'
@@ -93,14 +81,11 @@ class UserView(View):
 
     def get(self,request,username):
         user = User.objects.get(username=username)
-        profile_form = UserProfileForm(initial={'email':user.email,'about':user.about})
+        profile_form = UserProfileForm(initial={'about':user.about})
         active_user_id = request.session.get('user_id')
         active_user = User.objects.filter(id=active_user_id)
         if active_user_id == user.id:
-    # form = ComplimentForm(initial={'user':user})
-    # compliments = user.compliment_set.all()
             return render(request,self.template,{'user':user, 'active_user':active_user[0],'profile_form':profile_form,'user':user})
-    # ,'form':form,}) 'compliments': compliments})
         return redirect('/users/login')
 
     def post(self,request,username):
@@ -110,15 +95,8 @@ class UserView(View):
         if active_user_id == user.id:
             updated_form = UserProfileForm(request.POST)
             if updated_form.is_valid():
-                user.email = updated_form.cleaned_data.get('email')
                 user.about = updated_form.cleaned_data.get('about')
                 user.save()
                 return redirect('/users/{}'.format(user.username))
             return render(request, self.template, {'error':'Invalid input; please try again','user':user,'profile_form':self.profile_form})
         return redirect('/users/login')
-# def add(request,user_id):
-#     user = User.objects.get(id=user_id)
-#     username = user.username
-#     compliment_form = ComplimentForm(request.POST)
-#     compliment = compliment_form.save()
-#     return redirect('/account/'+str(username))

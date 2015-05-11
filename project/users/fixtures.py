@@ -8,6 +8,6 @@ class UserFactory(factory.Factory):
         model = models.User # imports for you
 
     username = 'stevepoly69'
-    email = 'stevepoly69@snl.com'
     password='bigeffindict'
     about='I\'ll drink all your beers, I\'ll eat the last slice'
+    points=10

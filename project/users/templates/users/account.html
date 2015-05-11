@@ -2,14 +2,15 @@
 {% load staticfiles %}
 
 		{% block content %}
+		<div id="user_profile">
 			<h1><strong>User: {{user.username}}</strong></h1><br />
-
+			<h1>Wins:  {{user.points}}</h1>
 			<form name="profile_form" action="/users/{{user.username}}" method="POST">
 				{% csrf_token %}
 				{{ profile_form.as_ul }}
 			<input type="submit" value="Update">
 			</form>
-
+		</div>
 
 
 			<!-- <form name="compliment" action="/compliments/add/{{user.id}}" method="POST">
