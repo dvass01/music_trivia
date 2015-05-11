@@ -1,6 +1,6 @@
 from django.conf.urls import include, url,patterns
 from django.contrib import admin
-from users.views import RegisterView, IndexView,LoginView, WelcomeView,UserView,LogoutView
+from users.views import RegisterView, IndexView,LoginView,UserView,LogoutView
 from django.views.generic import View
 
 
@@ -14,7 +14,7 @@ urlpatterns = patterns('',
 
     url(r'^login$', LoginView.as_view()),
 
-    url(r'^welcome$', WelcomeView.as_view()),
+    # url(r'^welcome$', WelcomeView.as_view()),
 
     url(r'^logout$',LogoutView.as_view()),
 

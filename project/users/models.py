@@ -16,5 +16,5 @@ class User(models.Model):
     username = models.CharField(max_length=255,unique=True,validators=[validate_username])
     password = models.CharField(max_length=255,validators=[validate_password])
     created_at = models.DateTimeField(auto_now_add=True)
-    email = models.EmailField(max_length=254)
     about = models.TextField(default='[user description]')
+    points = models.IntegerField(default=0)

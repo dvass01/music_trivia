@@ -11,3 +11,4 @@ class UserFactory(factory.Factory):
     email = 'stevepoly69@snl.com'
     password='bigeffindict'
     about='I\'ll drink all your beers, I\'ll eat the last slice'
+    points=10

@@ -35,7 +35,7 @@ class LoginView(View):
             if check_password(password, login_user[0].password):
                 request.session.flush()
                 request.session['user_id'] = login_user[0].id
-                return redirect('/users/welcome')
+                return redirect('/trivia')
         return render(request, self.template, {'error':'Username and/or password incorrect.  Please try again.', 'user_form':self.empty_form})
 
 class RegisterView(View):
@@ -60,19 +60,19 @@ class RegisterView(View):
             new_user.save()
             request.session.flush()
             request.session['user_id'] = new_user.id
-            return redirect('/users/welcome')
+            return redirect('/trivia')
         return render(request,self.template,{'error':'Invalid input, please try again (password must be at least 7 characters long).', 'user_form':self.empty_form})
 
-class WelcomeView(View):
-    template = 'users/welcome.html'
-
-    def get(self,request):
-        active_user_id = request.session.get('user_id')
-        active_user = User.objects.filter(id=active_user_id)
-        if active_user_id:
-            request.session.set_expiry(500)
-            return render(request, self.template,{'active_user':active_user[0]})
-        return redirect('/users')
+# class WelcomeView(View):
+#     template = 'users/welcome.html'
+#
+#     def get(self,request):
+#         active_user_id = request.session.get('user_id')
+#         active_user = User.objects.filter(id=active_user_id)
+#         if active_user_id:
+#             request.session.set_expiry(500)
+#             return render(request, self.template,{'active_user':active_user[0]})
+#         return redirect('/users')
 
 class LogoutView(View):
     template = 'users/logout.html'
@@ -93,7 +93,7 @@ class UserView(View):
 
     def get(self,request,username):
         user = User.objects.get(username=username)
-        profile_form = UserProfileForm(initial={'email':user.email,'about':user.about})
+        profile_form = UserProfileForm(initial={'about':user.about})
         active_user_id = request.session.get('user_id')
         active_user = User.objects.filter(id=active_user_id)
         if active_user_id == user.id:
