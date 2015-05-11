@@ -1,9 +1,10 @@
-# import factory
-#
-# class UserFactory(factory.DjangoModelFactory):
-#     class Meta:
-#         model = 'users.User' # imports for you
-#
-#     username = 'new_user'
-#     first_name = 'Steve'
-#     last_name = 'Polykronopolous'
+import factory
+
+class UserFactory(factory.DjangoModelFactory):
+    class Meta:
+        model = 'users.User' # imports for you
+
+    username = 'new_user'
+    first_name = 'Steve'
+    last_name = 'Polykronopolous'
+    email = 'stevep@snl.com'
