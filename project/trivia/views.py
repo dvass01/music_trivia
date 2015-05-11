@@ -32,15 +32,17 @@ class QuestionView(View):
 
         if active_user:
             question_dict = self.info_search.get_random_artist_songs(self.info_search.get_dict(genre))
-            all_artists=[]
+
+            all_artists = []
             for row in question_dict:
                 all_artists.append(row[0])
 
             answer_pair = random.choice(question_dict)
-            correct_artist=answer_pair[0]
-            correct_song=answer_pair[1]
+            correct_artist = answer_pair[0]
+            correct_song = answer_pair[1]
 
-            return render(request,self.template_name, {'active_user':active_user[0],'all_artists':all_artists,'correct_artist':correct_artist,'correct_song':correct_song})
+            return render(request,self.template_name, {'active_user':active_user[0],'all_artists':all_artists, 'correct_artist':correct_artist, 'correct_song':correct_song})
+
         return redirect('/users/login')
 
 
