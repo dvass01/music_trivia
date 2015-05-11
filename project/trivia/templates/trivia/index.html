@@ -5,15 +5,20 @@
 
 		{% if all_genres %}
 
-			<ul><p>Pick a genre to begin!</p>
+			<div id = "genre-list">
 
-				{% for genre in all_genres %}
+				<ul>
+					<p>Pick a genre to begin!</p>
 
-					<li><a href = "/trivia/questions/{{ genre.genre_name }}">{{ genre.genre_name }}</li>
+					{% for genre in all_genres %}
 
-				{% endfor %}
+						<li><a href = "/trivia/questions/{{ genre.genre_name }}">{{ genre.genre_name }}</li>
 
-			</ul>
+					{% endfor %}
+
+				</ul>
+
+			</div>
 
 		{% endif %}
 
