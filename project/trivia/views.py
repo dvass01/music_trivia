@@ -26,7 +26,7 @@ class QuestionView(View):
 
     def get(self, request):
         artists_songs_dict = self.info_search.get_dict(genre_choice)
-        
+
 
 
 
