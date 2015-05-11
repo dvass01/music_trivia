@@ -1,10 +1,13 @@
 import factory
+from . import models
 
-class UserFactory(factory.DjangoModelFactory):
+# from users.models import User
+
+class UserFactory(factory.Factory):
     class Meta:
-        model = 'users.User' # imports for you
+        model = models.User # imports for you
 
-    username = 'new_user'
-    first_name = 'Steve'
-    last_name = 'Polykronopolous'
-    email = 'stevep@snl.com'
+    username = 'stevepoly69'
+    email = 'stevepoly69@snl.com'
+    password='bigeffindict'
+    about='I\'ll drink all your beers, I\'ll eat the last slice'

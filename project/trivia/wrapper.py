@@ -2,6 +2,7 @@ import requests
 import json
 import collections
 from collections import defaultdict
+import random
 
 class EchoNest:
     def __init__(self):
@@ -52,7 +53,7 @@ class EchoNest:
         search_result = requests.get(self.artist_songs_url + name)
         if search_result.json() != []:
             artist_songs_dict = search_result.json()
-            for song in range(0, len(artist_songs_dict['response']['songs'])-1):
+            for song in range(len(artist_songs_dict['response']['songs'])-1):
                 # print(artist_songs_dict['response']['songs'][song]['title'])
                 results_array.append(artist_songs_dict['response']['songs'][song]['title'])
             return results_array
@@ -87,16 +88,35 @@ class EchoNest:
         # for row in artists_songs:
         #     print(row)
         # print()
+        # takes list of lists of artist and song and creates dict_items
+        # object of tuples of artist and a list of their songs
         d = defaultdict(list)
+        # print(artists_songs)
         for k, v in artists_songs:
             d[k].append(v)
         # for k, v in d.items():
         #     print(k, v)
         #     print()
-        return d.items()
+        # print(d.items())
+        return_list = list(d.items())
+        return return_list
+
+    def get_random_artist_songs(self, artists_songs_list):
+        random_artist_songs = []
+        # grabbing 4 artist songs tuples at random
+        random_artists = random.sample(artists_songs_list, 4)
+
+        for artist_song in random_artists:
+            # grabbing 1 song from list in 2nd index of artist_song tuple
+            random_song = random.sample(artist_song[1], 1)
+            # first - random song is list of length 1
+            random_artist_songs.append((artist_song[0], random_song[0]))
+        return random_artist_songs
 
 
-# e = EchoNest()
+if __name__ == '__main__':
+
+    e = EchoNest()
 # e.similar_artist_search('rainbow')
 # print()
 # e.get_genre_artists('rock')
@@ -106,3 +126,4 @@ class EchoNest:
 # e.get_artist_biographies('blindfaith')
 # print()
 # print(e.get_dict('rock'))
+    print(e.get_random_artist_songs(e.get_dict('rock')))
