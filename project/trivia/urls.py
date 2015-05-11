@@ -7,4 +7,6 @@ urlpatterns = patterns ('',
     url(r'^$', GenreView.as_view()),
     url(r'^questions/(?P<genre>[\w\-]+)/$', QuestionView.as_view()),
     url(r'^choices/(?P<artist>[\w\%]*)/$', ChoicesView.as_view()),
+
+
 )
