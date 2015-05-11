@@ -22,5 +22,9 @@ class User(models.Model):
     win_percentage = models.CharField(max_length=254, default=0)
 
     def calculate_win_percentage(self):
-        new_win_percentage = float((self.points/self.games_played)*100)
-        return new_win_percentage
+        if self.games_played > 0:
+            self.win_percentage = float(float(self.points/self.games_played)*100)
+            self.save()
+        else:
+            self.win_percentage = 0
+        return self.win_percentage

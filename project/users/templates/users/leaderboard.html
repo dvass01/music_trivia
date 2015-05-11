@@ -1,0 +1,17 @@
+{% extends 'users/base.html' %}
+
+    {% block content %}
+
+        {% if all_users %}
+            <div id = "leaderboard">
+                <ol>
+                    <h1>Leaderboard</h1>
+                    {% for user in all_users %}
+                        <li><a href="/users/{{user.username}}"><h2>{{user.username}}</a>, correct: {{user.points}}, win-percentage: {{user.win_percentage}}%</a></li></h2>
+                    {% endfor %}
+                </ol>
+        {% else %}
+                <p>No leaders, be the first!</p>
+            </div>
+        {% endif %}
+    {% endblock %}

@@ -98,19 +98,13 @@ form {
 #choice-list ul {
     list-style-type:none;
 }
-.post-metadata a{
-    color:#828282;
-}
-.domain a{
-    color:#828282;
-}
 a {
     text-decoration: none;
 }
 
 ol {
-    background-color:#f6f6ef;
-    margin:0;
+    margin-left:8em;
+    width: 85%;
 }
 .menu p{
     margin-right: 3em;
@@ -118,7 +112,6 @@ ol {
 }
 
 #hn-posts {
-    color:#828282;
     width: 80%;
 }
 
@@ -137,4 +130,12 @@ ol {
 #choice_list {
     margin: 0 auto 0 auto;
     width: 80%;
+}
+#leaderboard-link a {
+    margin-left:3em;
+    width: 80%
+}
+#results-div h1 {
+    width:80%;
+    margin-left:3em;
 }

@@ -1,6 +1,6 @@
 from django.conf.urls import include, url,patterns
 from django.contrib import admin
-from users.views import RegisterView, IndexView,LoginView,UserView,LogoutView
+from users.views import RegisterView, IndexView,LoginView,UserView,LogoutView,LeaderboardView
 from django.views.generic import View
 
 
@@ -16,5 +16,8 @@ urlpatterns = patterns('',
 
     url(r'^logout$',LogoutView.as_view()),
 
+    url(r'^leaderboard', LeaderboardView.as_view()),
+
     url(r'^(?P<username>[\w\-]+)$', UserView.as_view()),
+
 )
