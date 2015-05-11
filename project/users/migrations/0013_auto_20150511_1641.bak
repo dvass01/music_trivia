@@ -1,0 +1,19 @@
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+
+from django.db import models, migrations
+
+
+class Migration(migrations.Migration):
+
+    dependencies = [
+        ('users', '0012_auto_20150511_1640'),
+    ]
+
+    operations = [
+        migrations.AlterField(
+            model_name='user',
+            name='win_percentage',
+            field=models.DecimalField(max_digits=5, default=0.0, decimal_places=2),
+        ),
+    ]

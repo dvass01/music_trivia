@@ -4,7 +4,9 @@
 		{% block content %}
 		<div id="user_profile">
 			<h1><strong>User: {{user.username}}</strong></h1><br />
-			<h1>Wins:  {{user.points}}</h1>
+			<h2>Games Played: {{user.games_played}}</h2>
+			<h2>Correct Answers:  {{user.points}}</h2>
+			<h2>Win percentage: {{user.win_percentage}}%</h2>
 			<form name="profile_form" action="/users/{{user.username}}" method="POST">
 				{% csrf_token %}
 				{{ profile_form.as_ul }}

@@ -130,3 +130,11 @@ ol {
 #genre-list ul li {
     list-style-type: none;
 }
+#user_profile {
+    margin: 0 auto 0 auto;
+    width: 80%;
+}
+#choice_list {
+    margin: 0 auto 0 auto;
+    width: 80%;
+}

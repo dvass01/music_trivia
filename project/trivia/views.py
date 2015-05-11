@@ -62,8 +62,11 @@ class QuestionView(View):
         question_text = request.session.get('question_text')
         question = Question.objects.filter(question_text=question_text)[0]
         artist.replace('%20',' ')
+        active_user.games_played += 1
+        active_user.save()
         if question.answer == artist:
             active_user.points += 1
+            active_user.win_percentage = active_user.calculate_win_percentage()
             active_user.save()
             return render(request,self.template_name,{'result':'Correct!','active_user':active_user})
         return render(request,self.template_name,{'result':'Nope.','active_user':active_user})

@@ -15,3 +15,4 @@ class Question(models.Model):
     choice_4 = models.CharField(max_length=254)
     answer = models.CharField(max_length=254)
     user_answer = models.IntegerField(null=True)
+    
