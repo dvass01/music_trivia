@@ -28,6 +28,12 @@ class QuestionView(View):
     def get(self,request,genre):
         active_user_id = request.session.get('user_id')
         active_user = User.objects.filter(id=active_user_id)
+<<<<<<< HEAD
+=======
+
+        artists_songs_dict = self.info_search.get_dict(genre)
+
+>>>>>>> 722e88ed09ea111614f1142a348618ebb3e2dcfb
         if active_user:
             question_dict = self.info_search.get_random_artist_songs(self.info_search.get_dict(genre))
             all_artists=[]
@@ -38,6 +44,7 @@ class QuestionView(View):
             correct_song=answer_pair[1]
             return render(request,self.template_name, {'active_user':active_user[0],'all_artists':all_artists,'correct_artist':correct_artist,'correct_song':correct_song})
         return redirect('/users/login')
+
 
     def post(self, request):
         pass

@@ -53,12 +53,19 @@ class EchoNest:
         search_result = requests.get(self.artist_songs_url + name)
         if search_result.json() != []:
             artist_songs_dict = search_result.json()
+<<<<<<< HEAD
             try:
                 for song in range(len(artist_songs_dict['response']['songs'])-1):
                     # print(artist_songs_dict['response']['songs'][song]['title'])
                     results_array.append(artist_songs_dict['response']['songs'][song]['title'])
             except KeyError:
                 print('wait to execute again')
+=======
+            # print(artist_songs_dict['response'])
+            for song in range(len(artist_songs_dict['response']['songs'])-1):
+                # print(artist_songs_dict['response']['songs'][song]['title'])
+                results_array.append(artist_songs_dict['response']['songs'][song]['title'])
+>>>>>>> 722e88ed09ea111614f1142a348618ebb3e2dcfb
             return results_array
         else:
             # print("No songs found.")
@@ -119,8 +126,12 @@ class EchoNest:
 
 
 if __name__ == '__main__':
+    pass
 
     # e = EchoNest()
+
+    # print(e.get_artist_songs('radiohead'))
+
 # e.similar_artist_search('rainbow')
 # print()
 # e.get_genre_artists('rock')
@@ -130,4 +141,4 @@ if __name__ == '__main__':
 # e.get_artist_biographies('blindfaith')
 # print()
 # print(e.get_dict('rock'))
-    print(e.get_random_artist_songs(e.get_dict('rock')))
+    # print(e.get_random_artist_songs(e.get_dict('rock')))

@@ -1,4 +1,2 @@
 project/project/settings.py
 venv/*
-__pycache__/*
-
