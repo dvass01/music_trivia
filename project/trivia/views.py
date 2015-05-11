@@ -29,9 +29,11 @@ class QuestionView(View):
         active_user_id = request.session.get('user_id')
         active_user = User.objects.filter(id=active_user_id)
         artists_songs_dict = self.info_search.get_dict(genre_choice)
+
         if active_user:
             return render(request,self.template_name, {'active_user':active_user,'artist_list':artist_list})
         return redirect('/users/login')
+
 
     def post(self, request):
         pass
