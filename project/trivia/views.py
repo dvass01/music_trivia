@@ -57,14 +57,16 @@ class QuestionView(View):
 
 
     def post(self, request, artist):
+        active_user_id = request.session.get('user_id')
+        active_user = User.objects.filter(id=active_user_id)[0]
         question_text = request.session.get('question_text')
         question = Question.objects.filter(question_text=question_text)[0]
         artist.replace('%20',' ')
-        print(question.answer)
-        print(artist)
         if question.answer == artist:
-            return HttpResponse("Correct!")
-        return HttpResponse("Nope.")
+            active_user.points += 1
+            active_user.save()
+            return render(request,self.template_name,{'result':'Correct!','active_user':active_user})
+        return render(request,self.template_name,{'result':'Nope.','active_user':active_user})
 
 
 class ChoicesView(View):
