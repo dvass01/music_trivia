@@ -3,5 +3,21 @@
 	{% block content %}
 
 		<h1>{{active_user.username}}'s Game</h1>
+		<h2>Which artist performed "{{correct_song}}?"</h2>
+
+		{% for artist in all_artists %}
+
+			<div id="choice_list">
+
+				<ul>
+
+					<li><form name="choice_form" action="/trivia/choices/{{artist}}" method="POST">
+					{% csrf_token %}
+					<input type="submit" value="{{artist}}"></li>
+
+				</ul>
+
+			</div>
+		{% endfor %}
 
     {% endblock %}

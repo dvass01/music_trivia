@@ -53,9 +53,12 @@ class EchoNest:
         search_result = requests.get(self.artist_songs_url + name)
         if search_result.json() != []:
             artist_songs_dict = search_result.json()
-            for song in range(len(artist_songs_dict['response']['songs'])-1):
-                # print(artist_songs_dict['response']['songs'][song]['title'])
-                results_array.append(artist_songs_dict['response']['songs'][song]['title'])
+            try:
+                for song in range(len(artist_songs_dict['response']['songs'])-1):
+                    # print(artist_songs_dict['response']['songs'][song]['title'])
+                    results_array.append(artist_songs_dict['response']['songs'][song]['title'])
+            except KeyError:
+                print('wait to execute again')
             return results_array
         else:
             # print("No songs found.")
